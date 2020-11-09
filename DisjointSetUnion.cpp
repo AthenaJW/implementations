@@ -12,7 +12,7 @@ int height[MAXN];
 
 int find(int node)
 {
-	if (parent[node] == node)
+	if (parent[node] != node)
 		parent[node] = find(parent[node]);
 	return parent[node];
 }

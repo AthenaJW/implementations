@@ -12,8 +12,8 @@ int height[MAXN]; //as another heuristic, we keep track of height of each graph 
 //this way we are only ever adding half or less of the whole in one operation -> O(logn)
 int find(int node) //find the group this node belongs to
 {
-	if (parent[node] == node)
-		parent[node] = find(parent[node]); //recursively search for parent until reaches root
+	if (parent[node] != node)
+		parent[node] = find(parent[node]); //recursively search for parent until we reach root
 	return parent[node];//and update the node's parent to prevent having to travel that path again
 }
 
