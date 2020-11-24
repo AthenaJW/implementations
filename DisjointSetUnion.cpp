@@ -9,6 +9,7 @@ const int MAXN = 200000;
 int N, Q;
 int parent[MAXN];
 int height[MAXN];
+int size[MAXN];
 
 int find(int node)
 {
@@ -25,11 +26,13 @@ void join(int A, int B)
 	{
 		parent[rootB] = rootA;
 		height[rootA] = max(height[rootA], height[rootB]+1);
+		size[rootA] += size[rootB];
 	}
 	else
 	{
 		parent[rootA] = rootB;
 		height[rootB] = max(height[rootB], height[rootA]+1);
+		size[rootB] += size[rootA];
 	}
 }
 
@@ -43,5 +46,6 @@ int main () {
 		parent[i] = i;
 		height[i] = 0;
 	}
+	fill_n(size, N, 1); //size of each DSU at the beginning should be 1
 }
 
