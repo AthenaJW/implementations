@@ -23,12 +23,12 @@ void modify(int p, int value) {  // set value at position p
 
 int query(int l, int r) {  // sum on interval [l, r)
   int res = 0;
-  for (l += n, r += n; l < r; l >>= 1, r >>= 1) {
-    if (l&1) res += t[l++];
-    if (r&1) res += t[--r];
+  for (l += n, r += n; l < r; l >>= 1, r >>= 1) { // pointers are always on the same 'level' of the tree (sort of). When they cross, we know we're done
+    if (l&1) res += t[l++]; //if l is odd, it is the right child and the rightmost edge of it's parents range. We can just take it and move to the next range
+    if (r&1) res += t[--r]; //if r is odd, the inclusive edge (r-1) is the left child and the leftmost edge of it's parents range. We can just take it and move to the next range
   }
   return res;
-} // man you just have to draw this one out for it to make sense
+}
 
 int main() {
   scanf("%d", &n); //& is the reference operator. In this case it tells the program to store
